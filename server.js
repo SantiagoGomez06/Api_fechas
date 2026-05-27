@@ -18,7 +18,7 @@ mongoose.connect(`${config.url}/${config.BASEDATOS}`)
 
 // 🔹 RUTA BASE
 app.get('/', (req, res) => {
-    res.send('API de Festivos funcionando 🚀');
+    res.send('API de Festivos funciona correctamente en jenkins ');
 });
 
 // 🔹 RUTAS
