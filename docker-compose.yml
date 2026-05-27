@@ -1,0 +1,31 @@
+networks:
+  redfestivos:
+    driver: bridge
+ 
+services:
+ 
+  dockerbdmongo:
+    image: mongo:latest
+    container_name: dockerbdmongo
+    networks:
+      - redfestivos
+    ports:
+      - "27018:27017"
+    restart: unless-stopped
+ 
+  dockerapifechas:
+    build:
+      context: ./FECHAS
+      dockerfile: Dockerfile
+    container_name: dockerapifechas
+    networks:
+      - redfestivos
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: dockerbdmongo
+      DB_PORT: "27017"
+      DB_NAME: festivos
+    depends_on:
+      - dockerbdmongo
+    restart: on-failure
