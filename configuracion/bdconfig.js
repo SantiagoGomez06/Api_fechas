@@ -1,5 +1,5 @@
 module.exports = {
-    SERVIDOR: process.env.DB_HOST || 'localhost',
+    SERVIDOR: process.env.DB_HOST || 'mongodb://dockerbdmongo',
     PUERTO: process.env.DB_PORT || '27017',
     BASEDATOS: process.env.DB_NAME || 'festivos',
     USUARIO: process.env.DB_USER || '',
