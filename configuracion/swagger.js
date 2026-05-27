@@ -1,9 +1,9 @@
-const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerJSDOC = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
 class SwaggerConfig {
     constructor() {
-        this.puerto = process.env.PORT || 8080;
+
         this.options = {
             definition: {
                 openapi: '3.0.0',
@@ -14,22 +14,24 @@ class SwaggerConfig {
                 },
                 servers: [
                     {
-                        url: `http://localhost:${this.puerto}`,
-                        description:'Servidor local'
+                        url: 'http://localhost:8090',
+                        description: 'Servidor Docker'
                     },
                 ],
-           },
-           apis: ['./rutas/*.js', './rutas/*.js'], // 🔥 donde están tus endpoints
+            },
+            apis: ['./rutas/*.js'],
         };
-        this.spec = swaggerJSDoc(this.options);
+
+        this.spec = swaggerJSDOC(this.options);
     }
-    /**
-     * Configura Swagger en la aplicación Express recibida
-     * @param {express.Application} app
-     */
+
     configurar(app) {
         app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(this.spec));
-        console.log(` Documentación Swagger disponible en: http://localhost:${this.puerto}/api-docs`);
+
+        console.log(
+            'Documentación Swagger disponible en: http://localhost:8090/api-docs'
+        );
     }
 }
-module.exports = new  SwaggerConfig();
+
+module.exports = new SwaggerConfig();

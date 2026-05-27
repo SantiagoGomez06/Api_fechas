@@ -1,10 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+
 const rutas = require('./rutas/festivos.rutas');
 const config = require('./configuracion/bdconfig');
 const swaggerConfig = require('./configuracion/swagger');
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
 // 🔹 CONEXIÓN BD
@@ -20,7 +24,7 @@ app.get('/', (req, res) => {
 // 🔹 RUTAS
 app.use('/api/festivos', rutas);
 
-// 🔹 SWAGGER 👇
+// 🔹 SWAGGER
 swaggerConfig.configurar(app);
 
 // 🔹 SERVIDOR
