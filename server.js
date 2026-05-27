@@ -24,8 +24,8 @@ app.use('/api/festivos', rutas);
 swaggerConfig.configurar(app);
 
 // 🔹 SERVIDOR
-const PORT = 8080;
+const PORT = 3030;
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Servidor en: http://localhost:${PORT}`);
 });
